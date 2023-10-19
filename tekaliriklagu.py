@@ -2,6 +2,9 @@ import pyttsx3
 import time
 import random
 
+skor = 0
+#bil_cuba = 0
+
 # Define the verses of the songs
 verses_gerimis_mengundang = [
     "pernah juga kau pinta perpisahan",
@@ -42,16 +45,22 @@ engine = pyttsx3.init()
 def play_verse(verse):
     engine.say(verse)
     engine.runAndWait()
-    time.sleep(1)  # Add a pause between verses
+    time.sleep(2)  # Add a pause between verses
 
 # Function to select a random song
 def select_song():
     song = random.choice(["gerimis_mengundang","warisan", "demi_masa", "tinggal_kenangan","tepuk_tangan"])
     return song
 
+print("*********************************")
+print("SILA DENGAR DENGAN TELITI")
+print("TEKA NAMA LAGU TERSEBUT")
+print("*********************************")
+
 # Game loop
 while True:
     # Select a random song
+    #bil_cuba +=1
     song = select_song()
 
     # Play the verses based on the selected song
@@ -77,14 +86,19 @@ while True:
     # Check if the guess is correct
     if song == "gerimis_mengundang" and guess.lower() == "gerimis mengundang":
         print("Congratulations! You guessed it right!")
+        skor = skor + 5
     elif song == "demi_masa" and guess.lower() == "demi masa":
         print("Congratulations! You guessed it right!")
+        skor = skor + 5
     elif song == "tinggal_kenangan" and guess.lower() == "tinggal kenangan":
         print("Congratulations! You guessed it right!")
+        skor = skor + 5
     elif song == "tepuk_tangan" and guess.lower() == "tepuk tangan":
         print("Congratulations! You guessed it right!")
+        skor = skor + 5
     elif song == "warisan" and guess.lower() == "warisan":
         print("Congratulations! You guessed it right!")
+        skor = skor + 5
     else:
         print("Oops! Maaf anda salah. Tajuk lagu yang betul ialah '{}'.".format(song.capitalize()))
 
@@ -92,6 +106,8 @@ while True:
     replay = input("Nak main lagi? (ya/tidak): ")
     if replay.lower() != "ya":
         break
+# paparkan skor player
+print("Skor anda ialah:", skor)
 
 # Clean up the text-to-speech engine
 engine.stop()
